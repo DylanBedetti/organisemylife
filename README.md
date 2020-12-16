@@ -22,6 +22,8 @@
 
 ## Questions
 - what the difference between redux and react-redux? How do I know which ones I need?
+- what is this material ui makeStyles bullshit?
+- should i be passing children components through in PageLayout?
 
 ## Quick Links
 [React-Redux](https://react-redux.js.org/introduction/quick-start)

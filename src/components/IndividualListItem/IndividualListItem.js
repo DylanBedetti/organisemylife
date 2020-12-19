@@ -9,7 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import { green } from "@material-ui/core/colors";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -18,37 +18,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualListItem = (props) => {
-  const { key, text } = props;
+  const { text, complete } = props;
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(0);
+  const [checked, setChecked] = React.useState(complete);
+
+  const controlCheckbox = (event) => {
+    setChecked(!checked);
+  };
 
   return (
-      <ListItem
-        key={key}
-        role={undefined}
-        dense
-        button
-        onClick={() => setChecked(1 - checked)}
+    <ListItem
+      role={undefined}
+      dense
+      button
+      onClick={() => console.log("ListItem clicked")}
+    >
+      <ListItemIcon onClick={(event) => controlCheckbox(event)}>
+        <Checkbox
+          edge="start"
+          checked={checked}
+          tabIndex={-1}
+          disableRipple
+          icon={<RadioButtonUncheckedIcon />}
+          checkedIcon={
+            <RadioButtonCheckedIcon className={classes.checkedButton} />
+          }
+        />
+      </ListItemIcon>
+      <ListItemText primary={text} />
+      <ListItemSecondaryAction
+        onClick={() => console.log("MoreVertIcon clicked")}
       >
-        <ListItemIcon>
-          <Checkbox
-            edge="start"
-            checked={checked}
-            tabIndex={-1}
-            disableRipple
-            icon={<RadioButtonUncheckedIcon />}
-            checkedIcon={
-              <RadioButtonCheckedIcon className={classes.checkedButton} />
-            }
-          />
-        </ListItemIcon>
-        <ListItemText primary={text} />
-        <ListItemSecondaryAction>
-          <IconButton edge="end">
-            <MoreVertIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
+        <IconButton edge="end">
+          <MoreVertIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
   );
 };
 

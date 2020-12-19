@@ -2,9 +2,12 @@ import React from "react";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import _ from "lodash";
 
 import IndividualListItem from "../IndividualListItem/IndividualListItem";
 import AddListItem from "../AddListItem/AddListItem";
+
+import FakeListData from "../../data/FakeListData.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,18 +19,28 @@ const useStyles = makeStyles((theme) => ({
 const ListItems = () => {
   const classes = useStyles();
 
+  const renderList = (data) => {
+    let result = [];
+    
+    _.mapKeys(data, (value, key) => {
+      console.log(value, key);
+      result.push(<IndividualListItem id={key} text={value.text} complete={value.complete}/>);
+    });
+
+    return result;
+  };
+
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={0} sm={2}></Grid>
+      <Grid item xs={false} sm={2}></Grid>
       <Grid item xs={12} sm={8}>
         <List className={classes.root}>
-          <IndividualListItem key={1} text="this is my list text" />
-          <IndividualListItem key={2} text="this is my list text" />
-          <IndividualListItem key={3} text="this is my list text" />
+          {renderList(FakeListData)}
           <AddListItem />
         </List>
       </Grid>
-      <Grid item xs={0} sm={2}></Grid>
+      <Grid item xs={false} sm={2}></Grid>
     </Grid>
   );
 };

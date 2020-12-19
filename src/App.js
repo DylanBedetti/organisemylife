@@ -1,13 +1,15 @@
 // import react from "react";
 import PageLayout from "./components/PageLayout/PageLayout";
-import ListItem from "./components/ListItem/ListItem";
+import ListItems from "./components/ListItems/ListItems";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 const App = () => {
   return (
     <>
       <CssBaseline />
-      <PageLayout></PageLayout>
+      <PageLayout>
+        <ListItems />
+      </PageLayout>
     </>
   );
 };

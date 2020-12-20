@@ -13,3 +13,9 @@ export const fetchListItems = () => async (dispatch) => {
 
   dispatch({ type: FETCH_LIST_ITEMS, payload: response.data });
 };
+
+export const createListItem = (formValues) => async (dispatch, getState) => {
+  const response = await listItems.post("/list", { ...formValues });
+
+  dispatch({ type: CREATE_LIST_ITEM, payload: response.data });
+};

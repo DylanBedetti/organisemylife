@@ -12,10 +12,12 @@
 ## Current problems
 
 - adding a modal without using routing!!
+- Individual List Item, how to best add edit modal!!!
 
 ## Currently doing
 
 - adding redux
+- getting CRUD working
 
 ## Web App Structure
 

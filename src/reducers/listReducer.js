@@ -11,6 +11,8 @@ const listReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_LIST_ITEMS:
       return { ...state, ..._.mapKeys(action.payload, "id") };
+    case CREATE_LIST_ITEM:
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }

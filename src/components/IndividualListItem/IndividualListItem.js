@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -10,6 +10,8 @@ import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import { green } from "@material-ui/core/colors";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ItemPopover from "./ItemPopover";
+import ListEditModal from "../Modals/ListEditModal";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -20,19 +22,15 @@ const useStyles = makeStyles((theme) => ({
 const IndividualListItem = (props) => {
   const { text, complete } = props;
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(complete);
+  const [checked, setChecked] = useState(complete);
 
   const controlCheckbox = (event) => {
+    console.log("ListItem clicked");
     setChecked(!checked);
   };
 
   return (
-    <ListItem
-      role={undefined}
-      dense
-      button
-      onClick={() => console.log("ListItem clicked")}
-    >
+    <ListItem role={undefined} dense button>
       <ListItemIcon onClick={(event) => controlCheckbox(event)}>
         <Checkbox
           edge="start"
@@ -45,13 +43,18 @@ const IndividualListItem = (props) => {
           }
         />
       </ListItemIcon>
-      <ListItemText primary={text} />
+      <ListItemText
+        primary={text}
+        onClick={() => console.log("ListItemText Clicked")}
+      />
       <ListItemSecondaryAction
         onClick={() => console.log("MoreVertIcon clicked")}
       >
-        <IconButton edge="end">
-          <MoreVertIcon />
-        </IconButton>
+        <ItemPopover>
+          <IconButton edge="end">
+            <MoreVertIcon />
+          </IconButton>
+        </ItemPopover>
       </ListItemSecondaryAction>
     </ListItem>
   );

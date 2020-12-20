@@ -1,5 +1,5 @@
 import "date-fns";
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -12,6 +12,8 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import { connect } from "react-redux";
+import { createListItem } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -31,8 +33,9 @@ const useStyles = makeStyles((theme) => ({
 
 const ListAddModal = (props) => {
   const { children, title } = props;
-  const [open, setOpen] = React.useState(false);
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [itemText, setItemText] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,7 +46,13 @@ const ListAddModal = (props) => {
   };
 
   const handleDateChange = (date) => {
+    console.log(date.getTime() / 1000);
     setSelectedDate(date);
+  };
+
+  const handleItemChange = (text) => {
+    console.log(text.target.value);
+    setItemText(text);
   };
 
   return (
@@ -63,6 +72,7 @@ const ListAddModal = (props) => {
             label="What do you need to do?"
             type="text"
             fullWidth
+            onChange={handleItemChange}
           />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker

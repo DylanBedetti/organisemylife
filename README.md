@@ -37,3 +37,5 @@
 
 [React-Redux](https://react-redux.js.org/introduction/quick-start)
 [Material-UI](https://material-ui.com/components/box/)
+[Notes example 1](http://googlekeep-anselm94.herokuapp.com/)
+[Notes example 2](https://todoist.com/)

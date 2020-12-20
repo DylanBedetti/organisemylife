@@ -21,15 +21,20 @@ const ListItems = () => {
 
   const renderList = (data) => {
     let result = [];
-    
+
     _.mapKeys(data, (value, key) => {
       console.log(value, key);
-      result.push(<IndividualListItem id={key} text={value.text} complete={value.complete}/>);
+      result.push(
+        <IndividualListItem
+          key={key}
+          text={value.text}
+          complete={value.complete}
+        />
+      );
     });
 
     return result;
   };
-
 
   return (
     <Grid container spacing={2}>

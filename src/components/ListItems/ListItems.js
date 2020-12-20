@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import _ from "lodash";
+import { connect } from "react-redux";
+import { fetchListItems } from "../../actions";
 
 import IndividualListItem from "../IndividualListItem/IndividualListItem";
 import AddListItem from "../AddListItem/AddListItem";
-
-import FakeListData from "../../data/FakeListData.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,19 +16,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListItems = () => {
+const ListItems = (props) => {
+  const { fetchListItems, list } = props;
   const classes = useStyles();
 
-  const renderList = (data) => {
+  useEffect(() => {
+    fetchListItems();
+  }, []);
+
+  const renderList = () => {
     let result = [];
 
-    _.mapKeys(data, (value, key) => {
-      console.log(value, key);
+    _.mapValues(list, (listitem) => {
+      console.log(listitem);
       result.push(
         <IndividualListItem
-          key={key}
-          text={value.text}
-          complete={value.complete}
+          key={listitem.id}
+          text={listitem.description}
+          complete={listitem.complete}
         />
       );
     });
@@ -41,7 +46,7 @@ const ListItems = () => {
       <Grid item xs={false} sm={2}></Grid>
       <Grid item xs={12} sm={8}>
         <List className={classes.root}>
-          {renderList(FakeListData)}
+          {renderList()}
           <AddListItem />
         </List>
       </Grid>
@@ -50,4 +55,10 @@ const ListItems = () => {
   );
 };
 
-export default ListItems;
+const mapStateToProps = (state) => {
+  return {
+    list: state.list,
+  };
+};
+
+export default connect(mapStateToProps, { fetchListItems })(ListItems);

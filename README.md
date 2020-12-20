@@ -13,6 +13,10 @@
 
 - adding a modal without using routing!!
 
+## Currently doing
+
+- adding redux
+
 ## Web App Structure
 
 - Create diagram

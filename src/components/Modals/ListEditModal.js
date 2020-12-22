@@ -48,7 +48,7 @@ const ListEditModal = (props) => {
 
   return (
     <div>
-      <div onClick={handleClickOpen}>{children}</div>
+      <div onClick={handleClickOpen()}>{children}</div>
       <Dialog
         open={open}
         onClose={handleClose}

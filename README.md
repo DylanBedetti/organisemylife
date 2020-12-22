@@ -11,7 +11,7 @@
 
 ## Current problems
 
-- adding a modal without using routing!!
+- adding a modal without using routing!! - am I using a good method? same applies to Popups!
 - Individual List Item, how to best add edit modal!!!
 
 ## Currently doing
@@ -36,12 +36,18 @@
 ## Questions
 
 - what the difference between redux and react-redux? How do I know which ones I need?
-- what is this material ui makeStyles bullshit?
 - should i be passing children components through in PageLayout?
+- When do you actually need routes?
 
 ## Quick Links
 
-[React-Redux](https://react-redux.js.org/introduction/quick-start)
-[Material-UI](https://material-ui.com/components/box/)
-[Notes example 1](http://googlekeep-anselm94.herokuapp.com/)
+[React-Redux](https://react-redux.js.org/introduction/quick-start) \
+[Material-UI](https://material-ui.com/components/box/)\
+[Notes example 1](http://googlekeep-anselm94.herokuapp.com/)\
 [Notes example 2](https://todoist.com/)
+
+### When in doubt - look at other examples
+
+[Material UI Showcase](https://material-ui.com/discover-more/showcase/)
+[Material UI Templates](https://material-ui.com/getting-started/templates/)
+[Reactjs](https://reactjs.org/community/examples.html)

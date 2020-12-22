@@ -24,14 +24,13 @@ const IndividualListItem = (props) => {
   const classes = useStyles();
   const [checked, setChecked] = useState(complete);
 
-  const controlCheckbox = (event) => {
-    console.log("ListItem clicked");
+  const controlCheckbox = (e) => {
     setChecked(!checked);
   };
 
   return (
     <ListItem role={undefined} dense button>
-      <ListItemIcon onClick={(event) => controlCheckbox(event)}>
+      <ListItemIcon onClick={(e) => controlCheckbox(e)}>
         <Checkbox
           edge="start"
           checked={checked}
@@ -45,10 +44,14 @@ const IndividualListItem = (props) => {
       </ListItemIcon>
       <ListItemText
         primary={text}
-        onClick={() => console.log("ListItemText Clicked")}
+        onClick={(e) => {
+          console.log("ListItemText Clicked");
+        }}
       />
       <ListItemSecondaryAction
-        onClick={() => console.log("MoreVertIcon clicked")}
+        onClick={(e) => {
+          console.log("MoreVertIcon clicked");
+        }}
       >
         <ItemPopover>
           <IconButton edge="end">

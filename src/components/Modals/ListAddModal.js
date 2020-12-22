@@ -14,6 +14,7 @@ import {
 } from "@material-ui/pickers";
 import { connect } from "react-redux";
 import { createListItem } from "../../actions";
+import { Field, reduxForm } from "redux-form";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListAddModal = (props) => {
-  const { children, title } = props;
+  const { children, title, handleSubmit  } = props;
   const [open, setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [itemText, setItemText] = useState("");
@@ -55,6 +56,22 @@ const ListAddModal = (props) => {
     setItemText(text);
   };
 
+  const renderTextField = ({
+    input,
+    label,
+    meta: { touched, error },
+    ...custom
+  }) => (
+    <TextField
+      hintText={label}
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      {...custom}
+    />
+  );
+
+
   return (
     <div>
       <div onClick={handleClickOpen}>{children}</div>
@@ -65,33 +82,34 @@ const ListAddModal = (props) => {
       >
         <DialogTitle id="form-dialog-title">{title}</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="item"
-            label="What do you need to do?"
-            type="text"
-            fullWidth
-            onChange={handleItemChange}
-          />
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Due date"
-              value={selectedDate}
-              onChange={handleDateChange}
-            />
-          </MuiPickersUtilsProvider>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <Field
+                name="item"
+                component={renderTextField}
+                label="What do you need to do?"
+              />
+            </div>
+
+            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant="inline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                label="Due date"
+                value={selectedDate}
+                onChange={handleDateChange}
+              />
+            </MuiPickersUtilsProvider> */}
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary" type="submit">
             Confirm
           </Button>
         </DialogActions>
@@ -100,4 +118,18 @@ const ListAddModal = (props) => {
   );
 };
 
-export default ListAddModal;
+const validate = (values) => {
+  const errors = {};
+  const requiredFields = ["item"];
+  requiredFields.forEach((field) => {
+    if (!values[field]) {
+      errors[field] = "Required";
+    }
+  });
+  return errors;
+};
+
+export default reduxForm({
+  form: "AddListItem",
+  validate,
+})(ListAddModal);

@@ -18,8 +18,17 @@ import ListIcon from "@material-ui/icons/List";
 import DoneIcon from "@material-ui/icons/Done";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import FeedbackIcon from "@material-ui/icons/Feedback";
+import { Link } from "react-router-dom";
+import { MenuItem } from "@material-ui/core";
 
 const drawerWidth = 240;
+
+const sidebar = [
+  ["TO DO's", "/"],
+  ["Completed", "/stats"],
+  ["Statistics", "/dates"],
+  ["Feedback", "/feedback"],
+];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -159,17 +168,19 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-          {["TO DO's", "Completed", "Statistics", "Feedback"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {renderDrawerIcon(index)}
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+          {sidebar.map((text, index) => (
+            <MenuItem
+              component={Link}
+              to={text[1]}
+              disableGutters
+              ListItemClasses
+            >
+              <ListItem button key={text[0]}>
+                <ListItemIcon>{renderDrawerIcon(index)}</ListItemIcon>
+                <ListItemText primary={text[0]} />
               </ListItem>
-            )
-          )}
+            </MenuItem>
+          ))}
         </List>
       </Drawer>
       <main className={classes.content}>

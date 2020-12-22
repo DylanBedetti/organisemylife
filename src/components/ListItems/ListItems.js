@@ -28,7 +28,6 @@ const ListItems = (props) => {
     let result = [];
 
     _.mapValues(list, (listitem) => {
-      console.log(listitem);
       result.push(
         <IndividualListItem
           key={listitem.id}

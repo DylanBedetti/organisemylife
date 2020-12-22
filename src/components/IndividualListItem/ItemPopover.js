@@ -38,7 +38,7 @@ const ItemPopover = (props) => {
   const id = open ? "simple-popover" : undefined;
 
   return (
-    <div>
+    <>
       <div onClick={handleClick}>{children}</div>
       <Popover
         id={id}
@@ -70,14 +70,14 @@ const ItemPopover = (props) => {
           <Divider />
 
           <ListItem button className={classes.hover}>
-            <ListItemIcon >
+            <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
             <ListItemText primary="Delete task" />
           </ListItem>
         </List>
       </Popover>
-    </div>
+    </>
   );
 };
 

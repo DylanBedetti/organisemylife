@@ -56,6 +56,7 @@ const ListAddModal = (props) => {
               onSubmit={(values, { setSubmitting }) => {
                 console.log(JSON.stringify(values, null, 2));
                 values.due = moment(values.due).unix();
+                values.complete = false;
 
                 createListItem(values);
                 handleClose();

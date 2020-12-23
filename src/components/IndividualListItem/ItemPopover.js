@@ -50,12 +50,12 @@ const ItemPopover = (props) => {
             </ListItemIcon>
             <ListItemText primary="Edit task" />
           </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemIcon>
               <FileCopyIcon />
             </ListItemIcon>
             <ListItemText primary="Duplicate" />
-          </ListItem>
+          </ListItem> */}
           <Divider />
 
           <ListItem button onClick={() => deleteListItem(listId)}>

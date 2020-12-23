@@ -10,6 +10,8 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import moment from "moment";
+import { createListItem } from "../../actions";
+import { connect } from "react-redux";
 
 const [currentYear, currentMonth, nextDay] = [
   moment().year(),
@@ -18,7 +20,7 @@ const [currentYear, currentMonth, nextDay] = [
 ];
 
 const ListAddModal = (props) => {
-  const { children, title } = props;
+  const { children, title, createListItem } = props;
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -39,21 +41,23 @@ const ListAddModal = (props) => {
             <Formik
               initialValues={{
                 task: "",
-                datePicker: `${currentYear}-${currentMonth}-${nextDay}T00:00:00.000Z`,
+                due: `${currentYear}-${currentMonth}-${nextDay}`,
               }}
               validate={(values) => {
                 const errors = {};
                 if (!values.task) {
                   errors.task = "Required";
                 }
-                if (!values.datePicker) {
-                  errors.datePicker = "Required";
+                if (!values.due) {
+                  errors.due = "Required";
                 }
                 return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
                 console.log(JSON.stringify(values, null, 2));
-                // submit values to redux!
+                values.due = moment(values.due).unix();
+
+                createListItem(values);
                 handleClose();
               }}
             >
@@ -74,7 +78,7 @@ const ListAddModal = (props) => {
                     disablePast
                     component={DatePicker}
                     label="Due date"
-                    name="datePicker"
+                    name="due"
                   />
                   <br />
 
@@ -106,6 +110,4 @@ const ListAddModal = (props) => {
   );
 };
 
-export default ListAddModal;
-
-//  need to use initialValues API from redux-form
+export default connect(null, { createListItem })(ListAddModal);

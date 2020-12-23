@@ -19,6 +19,10 @@
 - adding redux
 - getting CRUD working
 
+## To Do
+
+- date in header
+
 ## Web App Structure
 
 - Create diagram

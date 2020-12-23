@@ -34,6 +34,7 @@ const ListItems = (props) => {
           listId={listitem.id}
           text={listitem.task}
           complete={listitem.complete}
+          due={listitem.due}
         />
       );
     });

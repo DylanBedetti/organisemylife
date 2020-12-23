@@ -12,6 +12,7 @@ import { green } from "@material-ui/core/colors";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ItemPopover from "./ItemPopover";
 import ListEditModal from "../Modals/ListEditModal";
+import ItemDueDate from "./ItemDueDate";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualListItem = (props) => {
-  const { text, complete, listId } = props;
+  const { text, complete, listId, due } = props;
   const classes = useStyles();
   const [checked, setChecked] = useState(complete);
 
@@ -42,7 +43,7 @@ const IndividualListItem = (props) => {
           }
         />
       </ListItemIcon>
-      <ListItemText primary={text} />
+      <ListItemText primary={text} secondary={<ItemDueDate due={due} />} />
       <ListItemSecondaryAction>
         <ItemPopover listId={listId}>
           <IconButton edge="end">

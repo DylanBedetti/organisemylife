@@ -10,6 +10,7 @@ const currentDate = moment().unix();
 const useStyles = makeStyles({
   icon: {
     margin: "0px 5px 0px 0px",
+    fontSize: 15,
   },
   typography: {
     display: "flex",
@@ -30,7 +31,7 @@ const ItemDueDate = (props) => {
   const { due } = props;
   return (
     <Typography className={classes.typography} variant="caption">
-      <ScheduleIcon fontSize="small" className={classes.icon} />
+      <ScheduleIcon className={classes.icon} />
       {renderDate(due)}
     </Typography>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -12,6 +12,8 @@ import { green } from "@material-ui/core/colors";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ItemPopover from "./ItemPopover";
 import ItemDueDate from "./ItemDueDate";
+import { connect } from "react-redux";
+import { editListItem } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -20,20 +22,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualListItem = (props) => {
-  const { text, complete, listId, due } = props;
+  const { text, complete, listId, due, editListItem } = props;
   const classes = useStyles();
-  const [checked, setChecked] = useState(complete);
-
-  const controlCheckbox = (e) => {
-    setChecked(!checked);
-  };
 
   return (
-    <ListItem role={undefined} dense button>
-      <ListItemIcon onClick={(e) => controlCheckbox(e)}>
+    <ListItem role={undefined} dense>
+      <ListItemIcon
+        onClick={() => editListItem(listId, { complete: !complete })}
+      >
         <Checkbox
           edge="start"
-          checked={checked}
+          checked={complete}
           tabIndex={-1}
           disableRipple
           icon={<RadioButtonUncheckedIcon />}
@@ -54,4 +53,4 @@ const IndividualListItem = (props) => {
   );
 };
 
-export default IndividualListItem;
+export default connect(null, { editListItem })(IndividualListItem);

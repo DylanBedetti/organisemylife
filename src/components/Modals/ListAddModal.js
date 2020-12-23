@@ -1,53 +1,24 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Field, reduxForm } from "redux-form";
-import { Radio, RadioGroup } from "@material-ui/core";
+import { Formik, Form, Field } from "formik";
+import { Button, LinearProgress } from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import { DatePicker } from "formik-material-ui-pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import moment from "moment";
 
-const renderTextField = ({
-  input,
-  label,
-  meta: { touched, error },
-  ...custom
-}) => (
-  <TextField
-    autoComplete="off"
-    autoFocus
-    color="primary"
-    hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-);
-
-const renderDateField = ({
-  value,
-  input,
-  label,
-  meta: { touched, error },
-  ...custom
-}) => (
-  <TextField
-    disablePast
-    helperText="Due Date Helper"
-    type="date"
-    InputLabelProps={{
-      shrink: true,
-    }}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-);
+const [currentYear, currentMonth, nextDay] = [
+  moment().year(),
+  moment().month() + 1,
+  moment().date() + 1,
+];
 
 const ListAddModal = (props) => {
-  const { children, title, handleSubmit, pristine, reset, submitting } = props;
+  const { children, title } = props;
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -61,81 +32,80 @@ const ListAddModal = (props) => {
   return (
     <>
       <div onClick={handleClickOpen}>{children}</div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} fullWidth>
         <DialogTitle>{title}</DialogTitle>
-        <form onSubmit={handleSubmit}>
-          <DialogContent>
-            <div>
-              <Field
-                name="item"
-                component={renderTextField}
-                label="What do you need to do?"
-              />
-            </div>
-
-            {/* <div>
-              <Field
-                name="datePicker"
-                component={renderDateField}
-                label="Due Date"
-              />
-            </div> */}
-
-            {/* <div>
-              <Field
-                name="lastName"
-                component={renderTextField}
-                label="Last Name"
-              />
-            </div>
-            <div>
-              <Field name="email" component={renderTextField} label="Email" />
-            </div> */}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              disabled={pristine || submitting}
-              onClick={reset}
-              color="primary"
+        <DialogContent>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Formik
+              initialValues={{
+                task: "",
+                datePicker: `${currentYear}-${currentMonth}-${nextDay}T00:00:00.000Z`,
+              }}
+              validate={(values) => {
+                const errors = {};
+                if (!values.task) {
+                  errors.task = "Required";
+                }
+                if (!values.datePicker) {
+                  errors.datePicker = "Required";
+                }
+                return errors;
+              }}
+              onSubmit={(values, { setSubmitting }) => {
+                console.log(JSON.stringify(values, null, 2));
+                // submit values to redux!
+                handleClose();
+              }}
             >
-              Clear Values
-            </Button>
-            <Button
-              type="submit"
-              disabled={pristine || submitting}
-              onClick={handleClose}
-              color="primary"
-            >
-              Submit
-            </Button>
-          </DialogActions>
-        </form>
+              {({ submitForm, isSubmitting }) => (
+                <Form>
+                  <Field
+                    autoFocus
+                    fullWidth
+                    autoComplete="off"
+                    component={TextField}
+                    name="task"
+                    label="Task"
+                    type="text"
+                  />
+                  <br />
+                  <Field
+                    fullWidth
+                    disablePast
+                    component={DatePicker}
+                    label="Due date"
+                    name="datePicker"
+                  />
+                  <br />
+
+                  {isSubmitting && <LinearProgress />}
+
+                  <br />
+                  <Button
+                    color="primary"
+                    disabled={isSubmitting}
+                    onClick={handleClose}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    color="primary"
+                    disabled={isSubmitting}
+                    onClick={submitForm}
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              )}
+            </Formik>
+          </MuiPickersUtilsProvider>
+        </DialogContent>
+        <DialogActions></DialogActions>
       </Dialog>
     </>
   );
 };
 
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.item) {
-    errors.item = "Required";
-  }
-
-  if (!values.datePicker) {
-    errors.datePicker = "Required";
-  }
-  return errors;
-};
-
-export default reduxForm({
-  form: "AddListItem",
-  validate,
-})(ListAddModal);
-
+export default ListAddModal;
 
 //  need to use initialValues API from redux-form

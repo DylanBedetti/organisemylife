@@ -5,8 +5,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core/styles";
 import { Field, reduxForm } from "redux-form";
+import { Radio, RadioGroup } from "@material-ui/core";
 
 const renderTextField = ({
   input,
@@ -18,7 +18,8 @@ const renderTextField = ({
     autoComplete="off"
     autoFocus
     color="primary"
-    helperText={label}
+    hintText={label}
+    floatingLabelText={label}
     errorText={touched && error}
     {...input}
     {...custom}
@@ -34,7 +35,7 @@ const renderDateField = ({
 }) => (
   <TextField
     disablePast
-    label="Due Date"
+    helperText="Due Date Helper"
     type="date"
     InputLabelProps={{
       shrink: true,
@@ -72,13 +73,24 @@ const ListAddModal = (props) => {
               />
             </div>
 
-            <div>
+            {/* <div>
               <Field
                 name="datePicker"
                 component={renderDateField}
                 label="Due Date"
               />
+            </div> */}
+
+            {/* <div>
+              <Field
+                name="lastName"
+                component={renderTextField}
+                label="Last Name"
+              />
             </div>
+            <div>
+              <Field name="email" component={renderTextField} label="Email" />
+            </div> */}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
@@ -109,12 +121,14 @@ const ListAddModal = (props) => {
 
 const validate = (values) => {
   const errors = {};
-  const requiredFields = ["item", "datePicker"];
-  requiredFields.forEach((field) => {
-    if (!values[field]) {
-      errors[field] = "Required";
-    }
-  });
+
+  if (!values.item) {
+    errors.item = "Required";
+  }
+
+  if (!values.datePicker) {
+    errors.datePicker = "Required";
+  }
   return errors;
 };
 
@@ -122,3 +136,6 @@ export default reduxForm({
   form: "AddListItem",
   validate,
 })(ListAddModal);
+
+
+//  need to use initialValues API from redux-form

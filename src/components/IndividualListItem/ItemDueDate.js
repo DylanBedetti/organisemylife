@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     flexWrap: "wrap",
-    color: (props) => (props.due > currentDate ? "" : red[500]),
+    color: (props) => (props.due > currentDate ? "" : red[300]),
   },
 });
 

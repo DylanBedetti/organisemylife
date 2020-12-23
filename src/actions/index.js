@@ -25,3 +25,9 @@ export const deleteListItem = (id) => async (dispatch) => {
 
   dispatch({ type: DELETE_LIST_ITEM, payload: id });
 };
+
+export const editListItem = (id, formValues) => async (dispatch) => {
+  const response = await listItems.patch(`/list/${id}`, formValues);
+
+  dispatch({ type: EDIT_LIST_ITEM, payload: response.data });
+};

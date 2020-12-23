@@ -11,7 +11,6 @@ import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import { green } from "@material-ui/core/colors";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ItemPopover from "./ItemPopover";
-import ListEditModal from "../Modals/ListEditModal";
 import ItemDueDate from "./ItemDueDate";
 
 const useStyles = makeStyles((theme) => ({

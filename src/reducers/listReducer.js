@@ -15,6 +15,8 @@ const listReducer = (state = {}, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_LIST_ITEM:
       return _.omit(state, action.payload);
+    case EDIT_LIST_ITEM:
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }

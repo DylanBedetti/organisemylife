@@ -10,7 +10,7 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import moment from "moment";
-import { createListItem } from "../../actions";
+import { createListItem, editListItem } from "../../actions";
 import { connect } from "react-redux";
 
 const [currentYear, currentMonth, nextDay] = [
@@ -19,8 +19,8 @@ const [currentYear, currentMonth, nextDay] = [
   moment().date() + 1,
 ];
 
-const ListAddModal = (props) => {
-  const { children, title, createListItem } = props;
+const ListModal = (props) => {
+  const { children, createListItem, editListItem, listId, edit, list } = props;
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -35,13 +35,15 @@ const ListAddModal = (props) => {
     <>
       <div onClick={handleClickOpen}>{children}</div>
       <Dialog open={open} onClose={handleClose} fullWidth>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>{`${edit ? "Edit" : "Add"} task`}</DialogTitle>
         <DialogContent>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
               initialValues={{
-                task: "",
-                due: `${currentYear}-${currentMonth}-${nextDay}`,
+                task: edit ? list[listId].task : "",
+                due: edit
+                  ? list[listId].due * 1000
+                  : `${currentYear}-${currentMonth}-${nextDay}`,
               }}
               validate={(values) => {
                 const errors = {};
@@ -54,11 +56,14 @@ const ListAddModal = (props) => {
                 return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
-                console.log(JSON.stringify(values, null, 2));
                 values.due = moment(values.due).unix();
-                values.complete = false;
+                if (edit) {
+                  editListItem(listId, values);
+                } else {
+                  values.complete = false;
+                  createListItem(values);
+                }
 
-                createListItem(values);
                 handleClose();
               }}
             >
@@ -68,6 +73,7 @@ const ListAddModal = (props) => {
                     autoFocus
                     fullWidth
                     autoComplete="off"
+                    multiline
                     component={TextField}
                     name="task"
                     label="Task"
@@ -98,7 +104,7 @@ const ListAddModal = (props) => {
                     disabled={isSubmitting}
                     onClick={submitForm}
                   >
-                    Submit
+                    {edit ? "Save" : "Submit"}
                   </Button>
                 </Form>
               )}
@@ -111,4 +117,12 @@ const ListAddModal = (props) => {
   );
 };
 
-export default connect(null, { createListItem })(ListAddModal);
+const mapStateToProps = (state) => {
+  return {
+    list: state.list,
+  };
+};
+
+export default connect(mapStateToProps, { createListItem, editListItem })(
+  ListModal
+);

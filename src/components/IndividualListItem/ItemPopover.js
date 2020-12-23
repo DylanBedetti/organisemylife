@@ -7,9 +7,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
-import FileCopyIcon from "@material-ui/icons/FileCopy";
 import { deleteListItem } from "../../actions";
 import { connect } from "react-redux";
+import ListModal from "../Modals/ListModal";
 
 const ItemPopover = (props) => {
   const { children, deleteListItem, listId } = props;
@@ -44,18 +44,15 @@ const ItemPopover = (props) => {
         }}
       >
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <EditIcon />
-            </ListItemIcon>
-            <ListItemText primary="Edit task" />
-          </ListItem>
-          {/* <ListItem button>
-            <ListItemIcon>
-              <FileCopyIcon />
-            </ListItemIcon>
-            <ListItemText primary="Duplicate" />
-          </ListItem> */}
+          <ListModal edit listId={listId}>
+            <ListItem button>
+              <ListItemIcon>
+                <EditIcon />
+              </ListItemIcon>
+              <ListItemText primary="Edit task" />
+            </ListItem>
+          </ListModal>
+
           <Divider />
 
           <ListItem button onClick={() => deleteListItem(listId)}>

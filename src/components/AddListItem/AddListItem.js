@@ -5,7 +5,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
-import ListAddModal from "../Modals/ListAddModal";
+import ListModal from "../Modals/ListModal";
 
 const useStyles = makeStyles((theme) => ({
   disabledItem: {
@@ -18,7 +18,7 @@ const AddListItem = () => {
 
   return (
     <>
-      <ListAddModal title="Add task">
+      <ListModal>
         <ListItem
           role={undefined}
           dense
@@ -31,7 +31,7 @@ const AddListItem = () => {
 
           <ListItemText primary="Add task" />
         </ListItem>
-      </ListAddModal>
+      </ListModal>
     </>
   );
 };

@@ -31,6 +31,7 @@ const ListItems = (props) => {
       result.push(
         <IndividualListItem
           key={listitem.id}
+          listId={listitem.id}
           text={listitem.task}
           complete={listitem.complete}
         />

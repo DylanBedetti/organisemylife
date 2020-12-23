@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualListItem = (props) => {
-  const { text, complete } = props;
+  const { text, complete, listId } = props;
   const classes = useStyles();
   const [checked, setChecked] = useState(complete);
 
@@ -42,18 +42,9 @@ const IndividualListItem = (props) => {
           }
         />
       </ListItemIcon>
-      <ListItemText
-        primary={text}
-        onClick={(e) => {
-          console.log("ListItemText Clicked");
-        }}
-      />
-      <ListItemSecondaryAction
-        onClick={(e) => {
-          console.log("MoreVertIcon clicked");
-        }}
-      >
-        <ItemPopover>
+      <ListItemText primary={text} />
+      <ListItemSecondaryAction>
+        <ItemPopover listId={listId}>
           <IconButton edge="end">
             <MoreVertIcon />
           </IconButton>

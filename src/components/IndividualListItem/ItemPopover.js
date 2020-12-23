@@ -1,30 +1,19 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
 import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
-import { red } from "@material-ui/core/colors";
-
-const useStyles = makeStyles((theme) => ({
-  hover: {
-    "&:hover": {
-      color: red[300],
-    },
-  },
-}));
+import { deleteListItem } from "../../actions";
+import { connect } from "react-redux";
 
 const ItemPopover = (props) => {
-  const { children } = props;
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { children, deleteListItem, listId } = props;
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -69,7 +58,7 @@ const ItemPopover = (props) => {
           </ListItem>
           <Divider />
 
-          <ListItem button className={classes.hover}>
+          <ListItem button onClick={() => deleteListItem(listId)}>
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
@@ -81,4 +70,4 @@ const ItemPopover = (props) => {
   );
 };
 
-export default ItemPopover;
+export default connect(null, { deleteListItem })(ItemPopover);

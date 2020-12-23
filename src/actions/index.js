@@ -19,3 +19,9 @@ export const createListItem = (formValues) => async (dispatch, getState) => {
 
   dispatch({ type: CREATE_LIST_ITEM, payload: response.data });
 };
+
+export const deleteListItem = (id) => async (dispatch) => {
+  await listItems.delete(`/list/${id}`);
+
+  dispatch({ type: DELETE_LIST_ITEM, payload: id });
+};

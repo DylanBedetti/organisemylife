@@ -13,6 +13,8 @@ const listReducer = (state = {}, action) => {
       return { ...state, ..._.mapKeys(action.payload, "id") };
     case CREATE_LIST_ITEM:
       return { ...state, [action.payload.id]: action.payload };
+    case DELETE_LIST_ITEM:
+      return _.omit(state, action.payload);
     default:
       return state;
   }

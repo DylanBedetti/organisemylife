@@ -14,6 +14,7 @@ import ItemPopover from "./ItemPopover";
 import ItemDueDate from "./ItemDueDate";
 import { connect } from "react-redux";
 import { editListItem } from "../../actions";
+import { Fade } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -26,30 +27,32 @@ const IndividualListItem = (props) => {
   const classes = useStyles();
 
   return (
-    <ListItem role={undefined} dense>
-      <ListItemIcon
-        onClick={() => editListItem(listId, { complete: !complete })}
-      >
-        <Checkbox
-          edge="start"
-          checked={complete}
-          tabIndex={-1}
-          disableRipple
-          icon={<RadioButtonUncheckedIcon />}
-          checkedIcon={
-            <RadioButtonCheckedIcon className={classes.checkedButton} />
-          }
-        />
-      </ListItemIcon>
-      <ListItemText primary={text} secondary={<ItemDueDate due={due} />} />
-      <ListItemSecondaryAction>
-        <ItemPopover listId={listId}>
-          <IconButton edge="end">
-            <MoreVertIcon />
-          </IconButton>
-        </ItemPopover>
-      </ListItemSecondaryAction>
-    </ListItem>
+    <Fade in={!complete} timeout={1000}>
+      <ListItem role={undefined} dense>
+        <ListItemIcon
+          onClick={() => editListItem(listId, { complete: !complete })}
+        >
+          <Checkbox
+            edge="start"
+            checked={complete}
+            tabIndex={-1}
+            disableRipple
+            icon={<RadioButtonUncheckedIcon />}
+            checkedIcon={
+              <RadioButtonCheckedIcon className={classes.checkedButton} />
+            }
+          />
+        </ListItemIcon>
+        <ListItemText primary={text} secondary={<ItemDueDate due={due} />} />
+        <ListItemSecondaryAction>
+          <ItemPopover listId={listId}>
+            <IconButton edge="end">
+              <MoreVertIcon />
+            </IconButton>
+          </ItemPopover>
+        </ListItemSecondaryAction>
+      </ListItem>
+    </Fade>
   );
 };
 

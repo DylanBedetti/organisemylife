@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import List from "@material-ui/core/List";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import _ from "lodash";
 import { connect } from "react-redux";
 import { fetchListItems } from "../../actions";
-
-import IndividualListItem from "../IndividualListItem/IndividualListItem";
-import AddListItem from "../AddListItem/AddListItem";
+import { List, Grid, ListItem, ListItemText } from "@material-ui/core";
+import CompletedListItem from "./CompletedListItem";
+import _ from "lodash";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListItems = (props) => {
-  const { fetchListItems, list } = props;
+const CompletedLIst = (props) => {
+  const { list, fetchListItems } = props;
   const classes = useStyles();
 
   useEffect(() => {
@@ -28,30 +25,34 @@ const ListItems = (props) => {
     let result = [];
 
     _.mapValues(list, (listitem) => {
-      if (!listitem.complete) {
+      if (listitem.complete) {
         result.push(
-          <IndividualListItem
+          <CompletedListItem
             key={listitem.id}
             listId={listitem.id}
             text={listitem.task}
             complete={listitem.complete}
-            due={listitem.due}
           />
         );
       }
     });
 
-    return result;
+    if (result.length) {
+      return result;
+    } else {
+      return [
+        <ListItem>
+          <ListItemText primary="You aint done shit" />
+        </ListItem>,
+      ];
+    }
   };
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={false} sm={2}></Grid>
       <Grid item xs={12} sm={8}>
-        <List className={classes.root}>
-          {renderList()}
-          <AddListItem />
-        </List>
+        <List className={classes.root}>{renderList()}</List>
       </Grid>
       <Grid item xs={false} sm={2}></Grid>
     </Grid>
@@ -64,4 +65,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchListItems })(ListItems);
+export default connect(mapStateToProps, { fetchListItems })(CompletedLIst);

@@ -25,8 +25,8 @@ const drawerWidth = 240;
 
 const sidebar = [
   ["TO DO's", "/"],
-  ["Completed", "/stats"],
-  ["Statistics", "/dates"],
+  ["Completed", "/completed"],
+  ["Statistics", "/stats"],
   ["Feedback", "/feedback"],
 ];
 

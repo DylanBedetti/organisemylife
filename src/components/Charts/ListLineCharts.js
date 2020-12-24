@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
-import { List, Grid, ListItem, ListItemText } from "@material-ui/core";
+
 import { connect } from "react-redux";
-import { fetchListItems } from "../../actions";
 import _ from "lodash";
 import moment from "moment";
 
@@ -25,12 +24,8 @@ const options = {
   },
 };
 
-const ListChart = (props) => {
+const ListLineCharts = (props) => {
   const { list, fetchListItems } = props;
-
-  useEffect(() => {
-    fetchListItems();
-  }, []);
 
   const prepare = () => {
     let prepareLabels = [];
@@ -74,15 +69,7 @@ const ListChart = (props) => {
       },
     ],
   };
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={false} sm={2}></Grid>
-      <Grid item xs={12} sm={8}>
-        <Line data={data} options={options} />
-      </Grid>
-      <Grid item xs={false} sm={2}></Grid>
-    </Grid>
-  );
+  return <Line data={data} options={options} />;
 };
 
 const mapStateToProps = (state) => {
@@ -91,4 +78,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchListItems })(ListChart);
+export default connect(mapStateToProps, {})(ListLineCharts);

@@ -2,7 +2,7 @@
 import PageLayout from "./components/PageLayout/PageLayout";
 import ListItems from "./components/ListItems/ListItems";
 import CompletedLIst from "./components/CompletedList/CompletedList";
-import ListCharts from "./components/Charts/ListLineCharts";
+import Charts from "./components/Charts/Charts";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Router, Route, Switch } from "react-router-dom";
@@ -20,7 +20,7 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={ListItems} />
               <Route path="/completed" exact component={CompletedLIst} />
-              <Route path="/stats" exact component={ListCharts} />
+              <Route path="/stats" exact component={Charts} />
               <Route path="/feedback" exact component="" />
             </Switch>
           </PageLayout>

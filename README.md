@@ -42,6 +42,7 @@
 - what the difference between redux and react-redux? How do I know which ones I need?
 - should i be passing children components through in PageLayout?
 - When do you actually need routes?
+- how to build stuff if the libraries don't have react bindings/components??
 
 ## Quick Links
 

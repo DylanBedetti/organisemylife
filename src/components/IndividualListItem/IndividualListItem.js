@@ -15,6 +15,7 @@ import ItemDueDate from "./ItemDueDate";
 import { connect } from "react-redux";
 import { editListItem } from "../../actions";
 import { Fade } from "@material-ui/core";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -30,7 +31,12 @@ const IndividualListItem = (props) => {
     <Fade in={!complete} timeout={1000}>
       <ListItem role={undefined} dense>
         <ListItemIcon
-          onClick={() => editListItem(listId, { complete: !complete })}
+          onClick={() =>
+            editListItem(listId, {
+              complete: !complete,
+              datecomplete: moment().unix(),
+            })
+          }
         >
           <Checkbox
             edge="start"

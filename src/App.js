@@ -1,11 +1,11 @@
 // import react from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { Router, Route, Switch } from "react-router-dom";
 import PageLayout from "./components/PageLayout/PageLayout";
 import ListItems from "./components/ListItems/ListItems";
 import CompletedLIst from "./components/CompletedList/CompletedList";
 import Charts from "./components/Charts/Charts";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
 const App = () => {

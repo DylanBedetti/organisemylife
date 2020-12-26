@@ -10,12 +10,12 @@ import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import { green } from "@material-ui/core/colors";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import ItemPopover from "./ItemPopover";
-import ItemDueDate from "./ItemDueDate";
 import { connect } from "react-redux";
-import { editListItem } from "../../actions";
 import { Fade } from "@material-ui/core";
 import moment from "moment";
+import ItemPopover from "./ItemPopover";
+import ItemDueDate from "./ItemDueDate";
+import { editListItem } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -24,19 +24,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualListItem = (props) => {
-  const { text, complete, listId, due, editListItem } = props;
+  const {
+    text, complete, listId, due, editListItem,
+  } = props;
   const classes = useStyles();
 
   return (
     <Fade in={!complete} timeout={1000}>
       <ListItem role={undefined} dense>
         <ListItemIcon
-          onClick={() =>
-            editListItem(listId, {
-              complete: !complete,
-              datecomplete: moment().unix(),
-            })
-          }
+          onClick={() => editListItem(listId, {
+            complete: !complete,
+            datecomplete: moment().unix(),
+          })}
         >
           <Checkbox
             edge="start"

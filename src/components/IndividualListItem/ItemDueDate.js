@@ -20,11 +20,9 @@ const useStyles = makeStyles({
   },
 });
 
-const renderDate = (due) => {
-  return due > currentDate
-    ? moment(due * 1000).format("dddd, MMMM Do")
-    : "Overdue!";
-};
+const renderDate = (due) => (due > currentDate
+  ? moment(due * 1000).format("dddd, MMMM Do")
+  : "Overdue!");
 
 const ItemDueDate = (props) => {
   const classes = useStyles(props);

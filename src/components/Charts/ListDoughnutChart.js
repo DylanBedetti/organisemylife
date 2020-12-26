@@ -18,10 +18,10 @@ const ListDoughnutChart = (props) => {
       {
         label: "# of Votes",
         data: [
-          _.filter(list, function (listitem) {
+          _.filter(list, (listitem) => {
             if (listitem.complete) return listitem;
           }).length,
-          _.filter(list, function (listitem) {
+          _.filter(list, (listitem) => {
             if (!listitem.complete) return listitem;
           }).length,
         ],
@@ -35,10 +35,8 @@ const ListDoughnutChart = (props) => {
   return <Doughnut data={data} options={options} />;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    list: state.list,
-  };
-};
+const mapStateToProps = (state) => ({
+  list: state.list,
+});
 
 export default connect(mapStateToProps, {})(ListDoughnutChart);

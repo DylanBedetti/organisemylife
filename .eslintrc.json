@@ -20,6 +20,8 @@
   "rules": {
     "quotes": ["error", "double"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "max-len": ["error", { "code": 90 }]
+    "max-len": ["error", { "code": 90 }],
+    "react/prop-types": "off",
+    "array-bracket-newline": ["error", "consistent"],
   }
 }

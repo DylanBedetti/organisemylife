@@ -11,10 +11,10 @@ import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { connect } from "react-redux";
-import { editListItem } from "../../actions";
-import ItemPopover from "../IndividualListItem/ItemPopover";
 import { makeStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
+import { editListItem } from "../../actions";
+import ItemPopover from "../IndividualListItem/ItemPopover";
 
 const useStyles = makeStyles((theme) => ({
   checkedButton: {
@@ -26,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CompletedListItem = (props) => {
-  const { editListItem, listId, text, complete } = props;
+  const {
+    editListItem, listId, text, complete,
+  } = props;
   const classes = useStyles();
 
   return (

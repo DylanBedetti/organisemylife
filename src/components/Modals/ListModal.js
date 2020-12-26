@@ -10,8 +10,8 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import moment from "moment";
-import { createListItem, editListItem } from "../../actions";
 import { connect } from "react-redux";
+import { createListItem, editListItem } from "../../actions";
 
 const [currentYear, currentMonth, nextDay] = [
   moment().year(),
@@ -20,7 +20,9 @@ const [currentYear, currentMonth, nextDay] = [
 ];
 
 const ListModal = (props) => {
-  const { children, createListItem, editListItem, listId, edit, list } = props;
+  const {
+    children, createListItem, editListItem, listId, edit, list,
+  } = props;
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -111,18 +113,16 @@ const ListModal = (props) => {
             </Formik>
           </MuiPickersUtilsProvider>
         </DialogContent>
-        <DialogActions></DialogActions>
+        <DialogActions />
       </Dialog>
     </>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    list: state.list,
-  };
-};
+const mapStateToProps = (state) => ({
+  list: state.list,
+});
 
 export default connect(mapStateToProps, { createListItem, editListItem })(
-  ListModal
+  ListModal,
 );

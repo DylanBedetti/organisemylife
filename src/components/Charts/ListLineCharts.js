@@ -28,12 +28,12 @@ const ListLineCharts = (props) => {
   const { list, fetchListItems } = props;
 
   const prepare = () => {
-    let prepareLabels = [];
+    const prepareLabels = [];
     let prepareData = [];
 
     _.mapValues(list, (listitem) => {
       if (listitem.complete) {
-        let datetime = listitem.datecomplete * 1000;
+        const datetime = listitem.datecomplete * 1000;
         let y = 1;
         prepareLabels.push(moment(datetime).format("dddd, MMMM Do"));
         if (prepareData.length) {
@@ -46,7 +46,7 @@ const ListLineCharts = (props) => {
         }
 
         if (y == 1) {
-          prepareData.push({ t: moment(datetime), y: y });
+          prepareData.push({ t: moment(datetime), y });
         }
       }
     });
@@ -72,10 +72,8 @@ const ListLineCharts = (props) => {
   return <Line data={data} options={options} />;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    list: state.list,
-  };
-};
+const mapStateToProps = (state) => ({
+  list: state.list,
+});
 
 export default connect(mapStateToProps, {})(ListLineCharts);

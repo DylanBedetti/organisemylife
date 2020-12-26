@@ -42,11 +42,10 @@ const CompletedLIst = (props) => {
     if (result.length) {
       return result;
     }
-    return [
-      <ListItem>
+    return ( <ListItem>
         <ListItemText primary="You aint done shit" />
-      </ListItem>,
-    ];
+      </ListItem>);
+    
   };
 
   return (

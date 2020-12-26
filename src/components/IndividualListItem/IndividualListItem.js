@@ -17,7 +17,7 @@ import ItemPopover from "./ItemPopover";
 import ItemDueDate from "./ItemDueDate";
 import { editListItem } from "../../actions";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   checkedButton: {
     color: green[500],
   },

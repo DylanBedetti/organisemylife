@@ -16,7 +16,7 @@ import { green } from "@material-ui/core/colors";
 import { editListItem } from "../../actions";
 import ItemPopover from "../IndividualListItem/ItemPopover";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   checkedButton: {
     color: green[500],
   },

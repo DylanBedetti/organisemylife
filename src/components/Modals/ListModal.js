@@ -11,6 +11,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import moment from "moment";
 import { connect } from "react-redux";
+import _ from "lodash";
 import { createListItem, editListItem } from "../../actions";
 
 const [currentYear, currentMonth, nextDay] = [
@@ -57,12 +58,14 @@ const ListModal = (props) => {
                 }
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                values.due = moment(values.due).unix();
+              onSubmit={(values) => {
+                let v = {};
+                v = _.cloneDeep(values);
+                v.due = moment(values.due).unix();
                 if (edit) {
                   editListItem(listId, values);
                 } else {
-                  values.complete = false;
+                  v.complete = false;
                   createListItem(values);
                 }
 

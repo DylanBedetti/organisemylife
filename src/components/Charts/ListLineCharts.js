@@ -25,7 +25,7 @@ const options = {
 };
 
 const ListLineCharts = (props) => {
-  const { list, fetchListItems } = props;
+  const { list } = props;
 
   const prepare = () => {
     const prepareLabels = [];
@@ -37,7 +37,7 @@ const ListLineCharts = (props) => {
         let y = 1;
         prepareLabels.push(moment(datetime).format("dddd, MMMM Do"));
         if (prepareData.length) {
-          prepareData.map((data, index) => {
+          prepareData.forEach((data, index) => {
             if (data.t.isSame(datetime, "day")) {
               y += 1;
               prepareData[index].y += 1;
@@ -45,7 +45,7 @@ const ListLineCharts = (props) => {
           });
         }
 
-        if (y == 1) {
+        if (y === 1) {
           prepareData.push({ t: moment(datetime), y });
         }
       }

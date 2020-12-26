@@ -1,4 +1,4 @@
-// import react from "react";
+import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Router, Route, Switch } from "react-router-dom";

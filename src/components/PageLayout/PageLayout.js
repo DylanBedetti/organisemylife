@@ -116,6 +116,8 @@ export default function MiniDrawer(props) {
         return <EqualizerIcon />;
       case 3:
         return <FeedbackIcon />;
+      default:
+        return null;
     }
   };
 
@@ -174,6 +176,7 @@ export default function MiniDrawer(props) {
               to={text[1]}
               disableGutters
               ListItemClasses
+              key={index}
             >
               <ListItem button key={text[0]}>
                 <ListItemIcon>{renderDrawerIcon(index)}</ListItemIcon>

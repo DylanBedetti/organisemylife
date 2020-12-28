@@ -4,7 +4,7 @@
     "es2021": true
   },
   "extends": [
-    "standard", "standard-jsx", "standard-react"
+    "standard", "standard-jsx", "standard-react", "plugin:jest/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -14,7 +14,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "jest"
   ],
   "rules": {
     "no-shadow": "warn",

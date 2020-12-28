@@ -36,6 +36,8 @@
 - tidy up components!
 - add Utils
 - memois api calls?
+- add proptype checks
+- add react testing!
 
 ## Web App Structure
 

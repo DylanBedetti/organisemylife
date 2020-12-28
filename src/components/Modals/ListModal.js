@@ -63,10 +63,10 @@ const ListModal = (props) => {
                 v = _.cloneDeep(values)
                 v.due = moment(values.due).unix()
                 if (edit) {
-                  editListItem(listId, values)
+                  editListItem(listId, v)
                 } else {
                   v.complete = false
-                  createListItem(values)
+                  createListItem(v)
                 }
 
                 handleClose()

@@ -1,7 +1,7 @@
 import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import { Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import PageLayout from './components/PageLayout/PageLayout'
 import ListItems from './components/ListItems/ListItems'
 import CompletedLIst from './components/CompletedList/CompletedList'
@@ -15,7 +15,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <Router history={history}>
+        <BrowserRouter history={history}>
           <PageLayout>
             <Switch>
               <Route path='/' exact component={ListItems} />
@@ -24,7 +24,7 @@ const App = () => {
               <Route path='/feedback' exact component='' />
             </Switch>
           </PageLayout>
-        </Router>
+        </BrowserRouter>
       </ThemeProvider>
     </>
   )

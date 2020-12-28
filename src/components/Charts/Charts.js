@@ -1,16 +1,16 @@
-import React, { useEffect } from "react"
-import { Grid } from "@material-ui/core"
-import { connect } from "react-redux"
-import ListLineCharts from "./ListLineCharts"
-import ListDoughnutChart from "./ListDoughnutChart"
-import { fetchListItems } from "../../actions"
+import React, { useEffect } from "react";
+import { Grid } from "@material-ui/core";
+import { connect } from "react-redux";
+import ListLineCharts from "./ListLineCharts";
+import ListDoughnutChart from "./ListDoughnutChart";
+import { fetchListItems } from "../../actions";
 
 const Charts = (props) => {
-  const { fetchListItems } = props
+  const { fetchListItems } = props;
 
   useEffect(() => {
-    fetchListItems()
-  }, [])
+    fetchListItems();
+  }, []);
 
   return (
     <Grid container spacing={2}>
@@ -22,7 +22,7 @@ const Charts = (props) => {
       </Grid>
       <Grid item xs={false} sm={2} />
     </Grid>
-  )
-}
+  );
+};
 
-export default connect(null, { fetchListItems })(Charts)
+export default connect(null, { fetchListItems })(Charts);

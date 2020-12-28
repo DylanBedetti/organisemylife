@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   ListItem,
   ListItemIcon,
@@ -6,15 +6,15 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   IconButton
-} from "@material-ui/core"
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked"
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked"
-import MoreVertIcon from "@material-ui/icons/MoreVert"
-import { connect } from "react-redux"
-import { makeStyles } from "@material-ui/core/styles"
-import { green } from "@material-ui/core/colors"
-import { editListItem } from "../../actions"
-import ItemPopover from "../IndividualListItem/ItemPopover"
+} from "@material-ui/core";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { connect } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+import { editListItem } from "../../actions";
+import ItemPopover from "../IndividualListItem/ItemPopover";
 
 const useStyles = makeStyles(() => ({
   checkedButton: {
@@ -23,13 +23,13 @@ const useStyles = makeStyles(() => ({
   listItem: {
     background: green[100]
   }
-}))
+}));
 
 const CompletedListItem = (props) => {
   const {
     editListItem, listId, text, complete
-  } = props
-  const classes = useStyles()
+  } = props;
+  const classes = useStyles();
 
   return (
     <ListItem role={undefined} dense className={classes.listItem}>
@@ -56,7 +56,7 @@ const CompletedListItem = (props) => {
         </ItemPopover>
       </ListItemSecondaryAction>
     </ListItem>
-  )
-}
+  );
+};
 
-export default connect(null, { editListItem })(CompletedListItem)
+export default connect(null, { editListItem })(CompletedListItem);

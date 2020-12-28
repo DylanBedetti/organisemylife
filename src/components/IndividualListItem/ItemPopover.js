@@ -1,30 +1,30 @@
-import React, { useState } from "react"
-import Popover from "@material-ui/core/Popover"
-import DeleteIcon from "@material-ui/icons/Delete"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import List from "@material-ui/core/List"
-import Divider from "@material-ui/core/Divider"
-import EditIcon from "@material-ui/icons/Edit"
-import { connect } from "react-redux"
-import { deleteListItem } from "../../actions"
-import ListModal from "../Modals/ListModal"
+import React, { useState } from "react";
+import Popover from "@material-ui/core/Popover";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import EditIcon from "@material-ui/icons/Edit";
+import { connect } from "react-redux";
+import { deleteListItem } from "../../actions";
+import ListModal from "../Modals/ListModal";
 
 const ItemPopover = (props) => {
-  const { children, deleteListItem, listId } = props
-  const [anchorEl, setAnchorEl] = useState(null)
+  const { children, deleteListItem, listId } = props;
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
-  const open = Boolean(anchorEl)
-  const id = open ? "simple-popover" : undefined
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   return (
     <>
@@ -64,7 +64,7 @@ const ItemPopover = (props) => {
         </List>
       </Popover>
     </>
-  )
-}
+  );
+};
 
-export default connect(null, { deleteListItem })(ItemPopover)
+export default connect(null, { deleteListItem })(ItemPopover);

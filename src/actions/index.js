@@ -4,30 +4,30 @@ import {
   FETCH_LIST_ITEM,  // eslint-disable-line
   DELETE_LIST_ITEM,
   EDIT_LIST_ITEM
-} from "./types"
+} from "./types";
 
-import listItems from "../apis/listItems"
+import listItems from "../apis/listItems";
 
 export const fetchListItems = () => async (dispatch) => {
-  const response = await listItems.get("/list")
+  const response = await listItems.get("/list");
 
-  dispatch({ type: FETCH_LIST_ITEMS, payload: response.data })
-}
+  dispatch({ type: FETCH_LIST_ITEMS, payload: response.data });
+};
 
 export const createListItem = (formValues) => async (dispatch, getState) => { // eslint-disable-line
-  const response = await listItems.post("/list", { ...formValues })
+  const response = await listItems.post("/list", { ...formValues });
 
-  dispatch({ type: CREATE_LIST_ITEM, payload: response.data })
-}
+  dispatch({ type: CREATE_LIST_ITEM, payload: response.data });
+};
 
 export const deleteListItem = (id) => async (dispatch) => {
-  await listItems.delete(`/list/${id}`)
+  await listItems.delete(`/list/${id}`);
 
-  dispatch({ type: DELETE_LIST_ITEM, payload: id })
-}
+  dispatch({ type: DELETE_LIST_ITEM, payload: id });
+};
 
 export const editListItem = (id, formValues) => async (dispatch) => {
-  const response = await listItems.patch(`/list/${id}`, formValues)
+  const response = await listItems.patch(`/list/${id}`, formValues);
 
-  dispatch({ type: EDIT_LIST_ITEM, payload: response.data })
-}
+  dispatch({ type: EDIT_LIST_ITEM, payload: response.data });
+};

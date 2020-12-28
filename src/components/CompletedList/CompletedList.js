@@ -1,30 +1,30 @@
-import React, { useEffect } from "react"
-import { connect } from "react-redux"
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import {
   List, Grid, ListItem, ListItemText
-} from "@material-ui/core"
-import _ from "lodash"
-import { makeStyles } from "@material-ui/core/styles"
-import CompletedListItem from "./CompletedListItem"
-import { fetchListItems } from "../../actions"
+} from "@material-ui/core";
+import _ from "lodash";
+import { makeStyles } from "@material-ui/core/styles";
+import CompletedListItem from "./CompletedListItem";
+import { fetchListItems } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     backgroundColor: theme.palette.background.paper
   }
-}))
+}));
 
 const CompletedLIst = (props) => {
-  const { list, fetchListItems } = props
-  const classes = useStyles()
+  const { list, fetchListItems } = props;
+  const classes = useStyles();
 
   useEffect(() => {
-    fetchListItems()
-  }, [])
+    fetchListItems();
+  }, []);
 
   const renderList = () => {
-    const result = []
+    const result = [];
 
     _.mapValues(list, (listitem) => {
       if (listitem.complete) {
@@ -35,19 +35,19 @@ const CompletedLIst = (props) => {
             text={listitem.task}
             complete={listitem.complete}
           />
-        )
+        );
       }
-    })
+    });
 
     if (result.length) {
-      return result
+      return result;
     }
     return (
       <ListItem>
         <ListItemText primary='You aint done shit' />
       </ListItem>
-    )
-  }
+    );
+  };
 
   return (
     <Grid container spacing={2}>
@@ -57,11 +57,11 @@ const CompletedLIst = (props) => {
       </Grid>
       <Grid item xs={false} sm={2} />
     </Grid>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => ({
   list: state.list
-})
+});
 
-export default connect(mapStateToProps, { fetchListItems })(CompletedLIst)
+export default connect(mapStateToProps, { fetchListItems })(CompletedLIst);

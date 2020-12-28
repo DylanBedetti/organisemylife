@@ -1,34 +1,34 @@
-import React from "react"
-import clsx from "clsx"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import Drawer from "@material-ui/core/Drawer"
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import List from "@material-ui/core/List"
-import Typography from "@material-ui/core/Typography"
-import Divider from "@material-ui/core/Divider"
-import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import ListIcon from "@material-ui/icons/List"
-import DoneIcon from "@material-ui/icons/Done"
-import EqualizerIcon from "@material-ui/icons/Equalizer"
-import FeedbackIcon from "@material-ui/icons/Feedback"
-import { Link } from "react-router-dom"
-import { MenuItem } from "@material-ui/core"
+import React from "react";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListIcon from "@material-ui/icons/List";
+import DoneIcon from "@material-ui/icons/Done";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
+import FeedbackIcon from "@material-ui/icons/Feedback";
+import { Link } from "react-router-dom";
+import { MenuItem } from "@material-ui/core";
 
-const drawerWidth = 240
+const drawerWidth = 240;
 
 const sidebar = [
   ["TO DO's", "/"],
   ["Completed", "/completed"],
   ["Statistics", "/stats"],
   ["Feedback", "/feedback"]
-]
+];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,36 +90,36 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   }
-}))
+}));
 
 export default function MiniDrawer (props) {
-  const { children } = props
-  const classes = useStyles()
-  const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const { children } = props;
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleDrawerClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const renderDrawerIcon = (index) => {
     switch (index) {
       case 0:
-        return <ListIcon />
+        return <ListIcon />;
       case 1:
-        return <DoneIcon />
+        return <DoneIcon />;
       case 2:
-        return <EqualizerIcon />
+        return <EqualizerIcon />;
       case 3:
-        return <FeedbackIcon />
+        return <FeedbackIcon />;
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -187,5 +187,5 @@ export default function MiniDrawer (props) {
         <Typography paragraph>{children}</Typography>
       </main>
     </div>
-  )
+  );
 }

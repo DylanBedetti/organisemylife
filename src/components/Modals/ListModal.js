@@ -1,38 +1,38 @@
-import React, { useState } from "react"
-import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
-import DialogContent from "@material-ui/core/DialogContent"
-import DialogTitle from "@material-ui/core/DialogTitle"
-import { Formik, Form, Field } from "formik"
-import { Button, LinearProgress } from "@material-ui/core"
-import { TextField } from "formik-material-ui"
-import { DatePicker } from "formik-material-ui-pickers"
-import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-import DateFnsUtils from "@date-io/date-fns"
-import moment from "moment"
-import { connect } from "react-redux"
-import _ from "lodash"
-import { createListItem, editListItem } from "../../actions"
+import React, { useState } from "react";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { Formik, Form, Field } from "formik";
+import { Button, LinearProgress } from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import { DatePicker } from "formik-material-ui-pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import moment from "moment";
+import { connect } from "react-redux";
+import _ from "lodash";
+import { createListItem, editListItem } from "../../actions";
 
 const [currentYear, currentMonth, nextDay] = [
   moment().year(),
   moment().month() + 1,
   moment().date() + 1
-]
+];
 
 const ListModal = (props) => {
   const {
     children, createListItem, editListItem, listId, edit, list
-  } = props
-  const [open, setOpen] = useState(false)
+  } = props;
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <>
@@ -49,27 +49,27 @@ const ListModal = (props) => {
                   : `${currentYear}-${currentMonth}-${nextDay}`
               }}
               validate={(values) => {
-                const errors = {}
+                const errors = {};
                 if (!values.task) {
-                  errors.task = "Required"
+                  errors.task = "Required";
                 }
                 if (!values.due) {
-                  errors.due = "Required"
+                  errors.due = "Required";
                 }
-                return errors
+                return errors;
               }}
               onSubmit={(values) => {
-                let v = {}
-                v = _.cloneDeep(values)
-                v.due = moment(values.due).unix()
+                let v = {};
+                v = _.cloneDeep(values);
+                v.due = moment(values.due).unix();
                 if (edit) {
-                  editListItem(listId, v)
+                  editListItem(listId, v);
                 } else {
-                  v.complete = false
-                  createListItem(v)
+                  v.complete = false;
+                  createListItem(v);
                 }
 
-                handleClose()
+                handleClose();
               }}
             >
               {({ submitForm, isSubmitting }) => (
@@ -119,13 +119,13 @@ const ListModal = (props) => {
         <DialogActions />
       </Dialog>
     </>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => ({
   list: state.list
-})
+});
 
 export default connect(mapStateToProps, { createListItem, editListItem })(
   ListModal
-)
+);

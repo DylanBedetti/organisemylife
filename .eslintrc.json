@@ -4,8 +4,7 @@
     "es2021": true
   },
   "extends": [
-    "plugin:react/recommended"
-    // "airbnb"
+    "standard", "standard-jsx", "standard-react"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -18,30 +17,7 @@
     "react"
   ],
   "rules": {
-    "quotes": [
-      "error",
-      "double"
-    ],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
-    ],
-    "max-len": [
-      "error",
-      {
-        "code": 90
-      }
-    ],
-    "react/prop-types": "off",
-    "array-bracket-newline": [
-      "error",
-      "consistent"
-    ],
-    "no-shadow": "warn"
+    "no-shadow": "warn",
+    "react/prop-types": "off"
   }
 }

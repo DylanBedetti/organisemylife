@@ -1,31 +1,31 @@
-import React, { useEffect } from "react";
-import List from "@material-ui/core/List";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import _ from "lodash";
-import { connect } from "react-redux";
-import { fetchListItems } from "../../actions";
+import React, { useEffect } from 'react'
+import List from '@material-ui/core/List'
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import { fetchListItems } from '../../actions'
 
-import IndividualListItem from "../IndividualListItem/IndividualListItem";
-import AddListItem from "../AddListItem/AddListItem";
+import IndividualListItem from '../IndividualListItem/IndividualListItem'
+import AddListItem from '../AddListItem/AddListItem'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+    width: '100%',
+    backgroundColor: theme.palette.background.paper
+  }
+}))
 
 const ListItems = (props) => {
-  const { fetchListItems, list } = props;
-  const classes = useStyles();
+  const { fetchListItems, list } = props
+  const classes = useStyles()
 
   useEffect(() => {
-    fetchListItems();
-  }, []);
+    fetchListItems()
+  }, [])
 
   const renderList = () => {
-    const result = [];
+    const result = []
 
     _.mapValues(list, (listitem) => {
       if (!listitem.complete) {
@@ -36,13 +36,13 @@ const ListItems = (props) => {
             text={listitem.task}
             complete={listitem.complete}
             due={listitem.due}
-          />,
-        );
+          />
+        )
       }
-    });
+    })
 
-    return result;
-  };
+    return result
+  }
 
   return (
     <Grid container spacing={2}>
@@ -55,11 +55,11 @@ const ListItems = (props) => {
       </Grid>
       <Grid item xs={false} sm={2} />
     </Grid>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => ({
-  list: state.list,
-});
+  list: state.list
+})
 
-export default connect(mapStateToProps, { fetchListItems })(ListItems);
+export default connect(mapStateToProps, { fetchListItems })(ListItems)

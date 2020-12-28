@@ -9,6 +9,16 @@
 - let you add priority to notes
 - let you edit/delete notes
 
+## Eslint Use guide
+
+- install eslint vscode extension
+- add this to your settings.json `"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript"
+  ]`
+
 ## Current problems
 
 - adding a modal without using routing!! - am I using a good method? same applies to Popups!
@@ -22,6 +32,12 @@
 ## To Do
 
 - date in header
+- feedback form
+- tidy up components!
+- add Utils
+- memois api calls?
+- add proptype checks
+- add react testing!
 
 ## Web App Structure
 
@@ -56,3 +72,4 @@
 [Material UI Showcase](https://material-ui.com/discover-more/showcase/)
 [Material UI Templates](https://material-ui.com/getting-started/templates/)
 [Reactjs](https://reactjs.org/community/examples.html)
+[eslint docs](https://eslint.org/docs/user-guide/command-line-interface)

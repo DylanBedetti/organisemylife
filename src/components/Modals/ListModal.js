@@ -10,17 +10,20 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import moment from "moment";
-import { createListItem, editListItem } from "../../actions";
 import { connect } from "react-redux";
+import _ from "lodash";
+import { createListItem, editListItem } from "../../actions";
 
 const [currentYear, currentMonth, nextDay] = [
   moment().year(),
   moment().month() + 1,
-  moment().date() + 1,
+  moment().date() + 1
 ];
 
 const ListModal = (props) => {
-  const { children, createListItem, editListItem, listId, edit, list } = props;
+  const {
+    children, createListItem, editListItem, listId, edit, list
+  } = props;
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -43,7 +46,7 @@ const ListModal = (props) => {
                 task: edit ? list[listId].task : "",
                 due: edit
                   ? list[listId].due * 1000
-                  : `${currentYear}-${currentMonth}-${nextDay}`,
+                  : `${currentYear}-${currentMonth}-${nextDay}`
               }}
               validate={(values) => {
                 const errors = {};
@@ -55,13 +58,15 @@ const ListModal = (props) => {
                 }
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                values.due = moment(values.due).unix();
+              onSubmit={(values) => {
+                let v = {};
+                v = _.cloneDeep(values);
+                v.due = moment(values.due).unix();
                 if (edit) {
-                  editListItem(listId, values);
+                  editListItem(listId, v);
                 } else {
-                  values.complete = false;
-                  createListItem(values);
+                  v.complete = false;
+                  createListItem(v);
                 }
 
                 handleClose();
@@ -72,20 +77,20 @@ const ListModal = (props) => {
                   <Field
                     autoFocus
                     fullWidth
-                    autoComplete="off"
+                    autoComplete='off'
                     multiline
                     component={TextField}
-                    name="task"
-                    label="Task"
-                    type="text"
+                    name='task'
+                    label='Task'
+                    type='text'
                   />
                   <br />
                   <Field
                     fullWidth
                     disablePast
                     component={DatePicker}
-                    label="Due date"
-                    name="due"
+                    label='Due date'
+                    name='due'
                   />
                   <br />
 
@@ -93,14 +98,14 @@ const ListModal = (props) => {
 
                   <br />
                   <Button
-                    color="primary"
+                    color='primary'
                     disabled={isSubmitting}
                     onClick={handleClose}
                   >
                     Cancel
                   </Button>
                   <Button
-                    color="primary"
+                    color='primary'
                     disabled={isSubmitting}
                     onClick={submitForm}
                   >
@@ -111,17 +116,15 @@ const ListModal = (props) => {
             </Formik>
           </MuiPickersUtilsProvider>
         </DialogContent>
-        <DialogActions></DialogActions>
+        <DialogActions />
       </Dialog>
     </>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    list: state.list,
-  };
-};
+const mapStateToProps = (state) => ({
+  list: state.list
+});
 
 export default connect(mapStateToProps, { createListItem, editListItem })(
   ListModal

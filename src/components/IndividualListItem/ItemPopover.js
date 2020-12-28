@@ -7,8 +7,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
-import { deleteListItem } from "../../actions";
 import { connect } from "react-redux";
+import { deleteListItem } from "../../actions";
 import ListModal from "../Modals/ListModal";
 
 const ItemPopover = (props) => {
@@ -36,11 +36,11 @@ const ItemPopover = (props) => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "center",
+          horizontal: "center"
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "center",
+          horizontal: "center"
         }}
       >
         <List>
@@ -49,7 +49,7 @@ const ItemPopover = (props) => {
               <ListItemIcon>
                 <EditIcon />
               </ListItemIcon>
-              <ListItemText primary="Edit task" />
+              <ListItemText primary='Edit task' />
             </ListItem>
           </ListModal>
 
@@ -59,7 +59,7 @@ const ItemPopover = (props) => {
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
-            <ListItemText primary="Delete task" />
+            <ListItemText primary='Delete task' />
           </ListItem>
         </List>
       </Popover>

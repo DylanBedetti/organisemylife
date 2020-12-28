@@ -12,8 +12,8 @@ import AddListItem from "../AddListItem/AddListItem";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
-  },
+    backgroundColor: theme.palette.background.paper
+  }
 }));
 
 const ListItems = (props) => {
@@ -25,7 +25,7 @@ const ListItems = (props) => {
   }, []);
 
   const renderList = () => {
-    let result = [];
+    const result = [];
 
     _.mapValues(list, (listitem) => {
       if (!listitem.complete) {
@@ -46,22 +46,20 @@ const ListItems = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={false} sm={2}></Grid>
+      <Grid item xs={false} sm={2} />
       <Grid item xs={12} sm={8}>
         <List className={classes.root}>
           {renderList()}
           <AddListItem />
         </List>
       </Grid>
-      <Grid item xs={false} sm={2}></Grid>
+      <Grid item xs={false} sm={2} />
     </Grid>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    list: state.list,
-  };
-};
+const mapStateToProps = (state) => ({
+  list: state.list
+});
 
 export default connect(mapStateToProps, { fetchListItems })(ListItems);

@@ -7,10 +7,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 import ListModal from "../Modals/ListModal";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   disabledItem: {
-    color: grey[500],
-  },
+    color: grey[500]
+  }
 }));
 
 const AddListItem = () => {
@@ -29,7 +29,7 @@ const AddListItem = () => {
             <AddIcon />
           </ListItemIcon>
 
-          <ListItemText primary="Add task" />
+          <ListItemText primary='Add task' />
         </ListItem>
       </ListModal>
     </>

@@ -5,28 +5,30 @@ import {
   Checkbox,
   ListItemText,
   ListItemSecondaryAction,
-  IconButton,
+  IconButton
 } from "@material-ui/core";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { connect } from "react-redux";
-import { editListItem } from "../../actions";
-import ItemPopover from "../IndividualListItem/ItemPopover";
 import { makeStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
+import { editListItem } from "../../actions";
+import ItemPopover from "../IndividualListItem/ItemPopover";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   checkedButton: {
-    color: green[500],
+    color: green[500]
   },
   listItem: {
-    background: green[100],
-  },
+    background: green[100]
+  }
 }));
 
 const CompletedListItem = (props) => {
-  const { editListItem, listId, text, complete } = props;
+  const {
+    editListItem, listId, text, complete
+  } = props;
   const classes = useStyles();
 
   return (
@@ -35,7 +37,7 @@ const CompletedListItem = (props) => {
         onClick={() => editListItem(listId, { complete: !complete })}
       >
         <Checkbox
-          edge="start"
+          edge='start'
           checked={complete}
           tabIndex={-1}
           disableRipple
@@ -48,7 +50,7 @@ const CompletedListItem = (props) => {
       <ListItemText primary={text} />
       <ListItemSecondaryAction>
         <ItemPopover listId={listId}>
-          <IconButton edge="end">
+          <IconButton edge='end'>
             <MoreVertIcon />
           </IconButton>
         </ItemPopover>

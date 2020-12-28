@@ -18,7 +18,7 @@
     "jest"
   ],
   "rules": {
-    "no-shadow": "warn",
+    "no-shadow": "off",
     "react/prop-types": "off",
     "quotes": ["error", "double"],
     "semi": ["error", "always"]

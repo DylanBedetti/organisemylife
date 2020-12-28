@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import Popover from '@material-ui/core/Popover'
-import DeleteIcon from '@material-ui/icons/Delete'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
-import EditIcon from '@material-ui/icons/Edit'
-import { connect } from 'react-redux'
-import { deleteListItem } from '../../actions'
-import ListModal from '../Modals/ListModal'
+import React, { useState } from "react"
+import Popover from "@material-ui/core/Popover"
+import DeleteIcon from "@material-ui/icons/Delete"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText"
+import List from "@material-ui/core/List"
+import Divider from "@material-ui/core/Divider"
+import EditIcon from "@material-ui/icons/Edit"
+import { connect } from "react-redux"
+import { deleteListItem } from "../../actions"
+import ListModal from "../Modals/ListModal"
 
 const ItemPopover = (props) => {
   const { children, deleteListItem, listId } = props
@@ -24,7 +24,7 @@ const ItemPopover = (props) => {
   }
 
   const open = Boolean(anchorEl)
-  const id = open ? 'simple-popover' : undefined
+  const id = open ? "simple-popover" : undefined
 
   return (
     <>
@@ -35,12 +35,12 @@ const ItemPopover = (props) => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center'
+          vertical: "bottom",
+          horizontal: "center"
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center'
+          vertical: "top",
+          horizontal: "center"
         }}
       >
         <List>

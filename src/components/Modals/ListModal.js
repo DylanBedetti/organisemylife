@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import { Formik, Form, Field } from 'formik'
-import { Button, LinearProgress } from '@material-ui/core'
-import { TextField } from 'formik-material-ui'
-import { DatePicker } from 'formik-material-ui-pickers'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import DateFnsUtils from '@date-io/date-fns'
-import moment from 'moment'
-import { connect } from 'react-redux'
-import _ from 'lodash'
-import { createListItem, editListItem } from '../../actions'
+import React, { useState } from "react"
+import Dialog from "@material-ui/core/Dialog"
+import DialogActions from "@material-ui/core/DialogActions"
+import DialogContent from "@material-ui/core/DialogContent"
+import DialogTitle from "@material-ui/core/DialogTitle"
+import { Formik, Form, Field } from "formik"
+import { Button, LinearProgress } from "@material-ui/core"
+import { TextField } from "formik-material-ui"
+import { DatePicker } from "formik-material-ui-pickers"
+import { MuiPickersUtilsProvider } from "@material-ui/pickers"
+import DateFnsUtils from "@date-io/date-fns"
+import moment from "moment"
+import { connect } from "react-redux"
+import _ from "lodash"
+import { createListItem, editListItem } from "../../actions"
 
 const [currentYear, currentMonth, nextDay] = [
   moment().year(),
@@ -38,12 +38,12 @@ const ListModal = (props) => {
     <>
       <div onClick={handleClickOpen}>{children}</div>
       <Dialog open={open} onClose={handleClose} fullWidth>
-        <DialogTitle>{`${edit ? 'Edit' : 'Add'} task`}</DialogTitle>
+        <DialogTitle>{`${edit ? "Edit" : "Add"} task`}</DialogTitle>
         <DialogContent>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
               initialValues={{
-                task: edit ? list[listId].task : '',
+                task: edit ? list[listId].task : "",
                 due: edit
                   ? list[listId].due * 1000
                   : `${currentYear}-${currentMonth}-${nextDay}`
@@ -51,10 +51,10 @@ const ListModal = (props) => {
               validate={(values) => {
                 const errors = {}
                 if (!values.task) {
-                  errors.task = 'Required'
+                  errors.task = "Required"
                 }
                 if (!values.due) {
-                  errors.due = 'Required'
+                  errors.due = "Required"
                 }
                 return errors
               }}
@@ -109,7 +109,7 @@ const ListModal = (props) => {
                     disabled={isSubmitting}
                     onClick={submitForm}
                   >
-                    {edit ? 'Save' : 'Submit'}
+                    {edit ? "Save" : "Submit"}
                   </Button>
                 </Form>
               )}

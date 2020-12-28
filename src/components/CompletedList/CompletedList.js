@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from "react"
+import { connect } from "react-redux"
 import {
   List, Grid, ListItem, ListItemText
-} from '@material-ui/core'
-import _ from 'lodash'
-import { makeStyles } from '@material-ui/core/styles'
-import CompletedListItem from './CompletedListItem'
-import { fetchListItems } from '../../actions'
+} from "@material-ui/core"
+import _ from "lodash"
+import { makeStyles } from "@material-ui/core/styles"
+import CompletedListItem from "./CompletedListItem"
+import { fetchListItems } from "../../actions"
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
     backgroundColor: theme.palette.background.paper
   }
 }))

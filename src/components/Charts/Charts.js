@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import { Grid } from '@material-ui/core'
-import { connect } from 'react-redux'
-import ListLineCharts from './ListLineCharts'
-import ListDoughnutChart from './ListDoughnutChart'
-import { fetchListItems } from '../../actions'
+import React, { useEffect } from "react"
+import { Grid } from "@material-ui/core"
+import { connect } from "react-redux"
+import ListLineCharts from "./ListLineCharts"
+import ListDoughnutChart from "./ListDoughnutChart"
+import { fetchListItems } from "../../actions"
 
 const Charts = (props) => {
   const { fetchListItems } = props

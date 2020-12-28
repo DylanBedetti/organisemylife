@@ -1,23 +1,23 @@
-import React from 'react'
-import { Line } from 'react-chartjs-2'
+import React from "react"
+import { Line } from "react-chartjs-2"
 
-import { connect } from 'react-redux'
-import _ from 'lodash'
-import moment from 'moment'
+import { connect } from "react-redux"
+import _ from "lodash"
+import moment from "moment"
 
 const options = {
   scales: {
     xAxes: [
       {
-        type: 'time',
+        type: "time",
         time: {
-          unit: 'day'
+          unit: "day"
         },
         ticks: {
           autoSkip: true,
           maxTicksLimit: 20,
-          min: moment().subtract(7, 'days'),
-          max: moment().add(1, 'days')
+          min: moment().subtract(7, "days"),
+          max: moment().add(1, "days")
         }
       }
     ]
@@ -35,10 +35,10 @@ const ListLineCharts = (props) => {
       if (listitem.complete) {
         const datetime = listitem.datecomplete * 1000
         let y = 1
-        prepareLabels.push(moment(datetime).format('dddd, MMMM Do'))
+        prepareLabels.push(moment(datetime).format("dddd, MMMM Do"))
         if (prepareData.length) {
           prepareData.forEach((data, index) => {
-            if (data.t.isSame(datetime, 'day')) {
+            if (data.t.isSame(datetime, "day")) {
               y += 1
               prepareData[index].y += 1
             }
@@ -51,7 +51,7 @@ const ListLineCharts = (props) => {
       }
     })
 
-    prepareData = _.orderBy(prepareData, ['t._i'], ['asc'])
+    prepareData = _.orderBy(prepareData, ["t._i"], ["asc"])
 
     return { prepareLabels, prepareData }
   }
@@ -61,11 +61,11 @@ const ListLineCharts = (props) => {
     labels: prepareLabels,
     datasets: [
       {
-        label: 'Completed Tasks',
+        label: "Completed Tasks",
         data: prepareData,
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)'
+        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "rgba(255, 99, 132, 0.2)"
       }
     ]
   }

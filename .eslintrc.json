@@ -4,7 +4,8 @@
     "es2021": true
   },
   "extends": [
-    "standard", "standard-jsx", "standard-react", "plugin:jest/recommended"
+    "standard", "standard-jsx", "standard-react", "plugin:cypress/recommended"
+    // "plugin:jest/recommended",
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -15,12 +16,15 @@
   },
   "plugins": [
     "react",
-    "jest"
+    // "jest",
+    "cypress"
   ],
   "rules": {
     "no-shadow": "off",
     "react/prop-types": "off",
     "quotes": ["error", "double"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "cypress/no-unnecessary-waiting": "off",
+    "no-unused-expressions": "warn"
   }
 }

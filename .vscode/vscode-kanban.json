@@ -7,7 +7,11 @@
       "creation_time": "2020-12-28T09:19:24.684Z",
       "id": "5",
       "references": [],
-      "title": "Add Jest/React Testing Library"
+      "title": "Add Jest/React Testing Library",
+      "description": {
+        "content": "All I want to test for\n- CRUD operations\n- components render",
+        "mime": "text/markdown"
+      }
     },
     {
       "assignedTo": {
@@ -59,6 +63,15 @@
       "prio": -1,
       "references": [],
       "title": "BIG GOALS"
+    },
+    {
+      "assignedTo": {
+        "name": "Dylan Bedetti"
+      },
+      "creation_time": "2020-12-28T10:59:08.762Z",
+      "id": "7",
+      "references": [],
+      "title": "Understanding how to use environment variables"
     }
   ],
   "in-progress": [],
